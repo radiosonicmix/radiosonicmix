@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RadiosonicMix</title>
+    <link rel="icon" href="https://adalo-uploads.imgix.net/f1f35d8bf273a1fc1fc9611f1a358ca6338fa6642d39207027bce841c861880c.png?orient=&auto=compress" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, red, yellow, green);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            box-sizing: border-box;
+            height: 60px; /* Definir una altura fija para el banner */
+        }
+
+        .logo {
+            height: 65px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .menu-items {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: rgba(0, 0, 0, 0.7);
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .menu.show {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        .banner-container {
+            position: relative;
+            width: 100%;
+            padding-top: 60px; /* Espacio para el banner fijo en la parte superior */
+        }
+
+        .banner-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(5vh - 60px); /* Ajustar la altura considerando el espacio del banner */
+            background-color: #FFFFFF;
+            margin: 0;
+            padding: 20px; /* Añadir padding para evitar que el contenido toque los bordes */
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            margin-top: 10px; /* Espacio entre el banner y el card */
+        }
+
+        .logo-container {
+            margin-bottom: 15px;
+        }
+
+        .logo2 {
+            width: 80px;
+            height: auto;
+            animation: logoAnimation 2s infinite;
+        }
+
+        .title {
+            font-size: 1.5em;
+            margin: 0;
+            color: #333;
+        }
+
+        .live-badge {
+            background-color: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        .player {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        @keyframes logoAnimation {
+            0% {
+                transform: rotate(0deg);
+            }
+            50% {
+                transform: rotate(360deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px; /* Espacio superior para separar de otros elementos */
+        }
+
+        .social-icons a {
+            color: #333;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <img src="https://adalo-uploads.imgix.net/6bedba77e935ab2985b50e6d285e07ab5586aa633157188101d1a97009d21fa7.png?orient=&auto=compress" alt="Logo" class="logo">
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <div class="menu menu-items">
+            <a href="#">Inicio</a>
+            <a href="#">Generos</a>
+            <a href="#">Donaciones</a>
+            <a href="#">Placas</a>
+            <a href="#">Contacto</a>
+        </div>
+    </div>
+
+    <div class="banner-container">
+        <img src="https://adalo-uploads.imgix.net/5cfb5b9c3a74a0f1643df8bd6d4dda48474db02a37afe20af64215662d39f79a.jpg?orient=&auto=compress" alt="Banner Adicional">
+    </div>
+
+    <div class="main-container">
+        <div class="card">
+            <div class="logo-container">
+                <img src="https://adalo-uploads.imgix.net/f1f35d8bf273a1fc1fc9611f1a358ca6338fa6642d39207027bce841c861880c.png?orient=&auto=compress" alt="Logo" class="logo2">
+            </div>
+            <h1 class="title">RadiosonicMix</h1>
+            <div class="live-badge">EN VIVO</div>
+            <audio controls class="player">
+                <source src="https://uk1freenew.listen2myradio.com/live.mp3?typeportmount=s2_26653_stream_990815769" type="audio/mpeg">
+                Tu navegador no soporta el elemento de audio.
+            </audio>
+        </div>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.instagram.com/share?url=YOUR_URL" target="_blank" title="Compartir en Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://t.me/share/url?url=YOUR_URL" target="_blank" title="Compartir en Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="https://api.whatsapp.com/send?text=YOUR_URL" target="_blank" title="Compartir en WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank" title="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+<br><br>
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.menu');
+            menu.classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
+<script id="chatBroEmbedCode">/* Chatbro Widget Embed Code Start */function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','https://www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}/* Chatbro Widget Embed Code End */ChatbroLoader({encodedChatId: '28zHu'});</script>
