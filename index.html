@@ -188,6 +188,18 @@
         .social-icons a:hover {
             transform: scale(1.2);
         }
+
+        .fb-feedback {
+            width: 100%;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .fb-feedback iframe {
+            max-width: 100%;
+            border: none;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -229,7 +241,11 @@
         <a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank" title="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
     </div>
-    <BR><BR>
+
+    <div class="fb-feedback">
+        <iframe src="https://www.facebook.com/plugins/feedback.php?app_id=972782402784459&channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df7b7046d6196ce0ab%26domain%3Dradiosonicmusicfm.radiostream321.com%26is_canvas%3Dfalse%26origin%3Dhttps%3A%2F%2Fradiosonicmusicfm.radiostream321.com%2Ff11c06772207f85%3A2809635907%2Ff5904f764a754e0%26relation%3Dparent.parent%26frame%3Dtrue&href=https%3A%2F%2Fradiosonicmusicfm.radiostream321.com%2F&sdk=joey" width="100%" height="400" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+    </div>
+
     <script>
         function toggleMenu() {
             const menu = document.querySelector('.menu');
@@ -238,19 +254,14 @@
 
         function updateTime() {
             const now = new Date();
-            let hours = now.getHours();
+            const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            hours = hours % 12;
-            hours = hours ? hours : 12; // El '0' debe ser '12'
-            const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
-            document.getElementById('local-time').textContent = timeString;
+            document.getElementById('local-time').textContent = `${hours}:${minutes}:${seconds}`;
         }
 
-        setInterval(updateTime, 1000); // Actualizar cada segundo
-        updateTime(); // Llamar una vez al cargar la página para mostrar la hora inmediatamente
+        setInterval(updateTime, 1000);
+        updateTime(); // Initialize time immediately
     </script>
 </body>
 </html>
-<script id="chatBroEmbedCode">/* Chatbro Widget Embed Code Start */function ChatbroLoader(chats,async){async=!1!==async;var params={embedChatsParameters:chats instanceof Array?chats:[chats],lang:navigator.language||navigator.userLanguage,needLoadCode:'undefined'==typeof Chatbro,embedParamsVersion:localStorage.embedParamsVersion,chatbroScriptVersion:localStorage.chatbroScriptVersion},xhr=new XMLHttpRequest;xhr.withCredentials=!0,xhr.onload=function(){eval(xhr.responseText)},xhr.onerror=function(){console.error('Chatbro loading error')},xhr.open('GET','https://www.chatbro.com/embed.js?'+btoa(unescape(encodeURIComponent(JSON.stringify(params)))),async),xhr.send()}/* Chatbro Widget Embed Code End */ChatbroLoader({encodedChatId: '28zHu'});</script>
