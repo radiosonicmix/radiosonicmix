@@ -140,6 +140,14 @@
             margin: 15px 0;
         }
 
+        .local-time {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+            animation: timeAnimation 1s linear infinite;
+            font-weight: bold;
+        }
+
         @keyframes logoAnimation {
             0% {
                 transform: rotate(0deg);
@@ -149,6 +157,18 @@
             }
             100% {
                 transform: rotate(0deg);
+            }
+        }
+
+        @keyframes timeAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
             }
         }
 
@@ -193,6 +213,7 @@
                 <img src="https://adalo-uploads.imgix.net/f1f35d8bf273a1fc1fc9611f1a358ca6338fa6642d39207027bce841c861880c.png?orient=&auto=compress" alt="Logo" class="logo2">
             </div>
             <h1 class="title">RadiosonicMix</h1>
+            <div id="local-time" class="local-time"></div>
             <div class="live-badge">EN VIVO</div>
             <audio controls class="player">
                 <source src="https://uk1freenew.listen2myradio.com/live.mp3?typeportmount=s2_26653_stream_990815769" type="audio/mpeg">
@@ -208,12 +229,27 @@
         <a href="https://twitter.com/intent/tweet?url=YOUR_URL" target="_blank" title="Compartir en Twitter"><i class="fab fa-twitter"></i></a>
         <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL" target="_blank" title="Compartir en Facebook"><i class="fab fa-facebook"></i></a>
     </div>
-<br><br>
+    <BR><BR>
     <script>
         function toggleMenu() {
             const menu = document.querySelector('.menu');
             menu.classList.toggle('show');
         }
+
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // El '0' debe ser '12'
+            const timeString = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            document.getElementById('local-time').textContent = timeString;
+        }
+
+        setInterval(updateTime, 1000); // Actualizar cada segundo
+        updateTime(); // Llamar una vez al cargar la página para mostrar la hora inmediatamente
     </script>
 </body>
 </html>
