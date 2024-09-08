@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>RadiosonicMix</title>
+    <title>RadiosonicMix</title>
     <link rel="icon" href="https://adalo-uploads.imgix.net/f1f35d8bf273a1fc1fc9611f1a358ca6338fa6642d39207027bce841c861880c.png?orient=&auto=compress" type="image/png">
     <style>
         body {
             margin: 0;
             padding: 0;
+            overflow: hidden; /* Para evitar scrollbars debido al video */
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
+            color: #fff; /* Cambia el color del texto para que contraste con el video */
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Hace que el video cubra toda el área */
+            z-index: -1; /* Envía el video al fondo */
         }
 
         .loading-screen {
             text-align: center;
+            position: relative; /* Para que el texto esté encima del video */
+            z-index: 1;
         }
 
         .loading-icon {
@@ -29,7 +42,7 @@
         .loading-text {
             font-size: 1.5em;
             margin-top: 20px;
-            color: #333;
+            color: #fff; /* Color blanco para que sea visible sobre el video */
         }
 
         @keyframes spin {
@@ -39,10 +52,16 @@
     </style>
 </head>
 <body>
+    <video autoplay muted loop class="video-background">
+        <source src="https://proton-uploads-production.s3.amazonaws.com/1e339f878d10c54279b07fe2f1abf47e516b937036c2a145049e4d8d5ce215cd.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+    </video>
+
     <div class="loading-screen">
         <img src="https://adalo-uploads.imgix.net/f1f35d8bf273a1fc1fc9611f1a358ca6338fa6642d39207027bce841c861880c.png?orient=&auto=compress" alt="Cargando" class="loading-icon">
         <p class="loading-text">Cargando FM</p>
     </div>
+
     <script>
         // Redirige después de 6 segundos
         setTimeout(function() {
